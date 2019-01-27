@@ -16,10 +16,13 @@ function createDescription(d = "No description available.") {
 
 function createBookEntry(book) {
     const base = document.getElementById('root')
-    const b = document.createElement('div')
-    b.appendChild(createTitle(book.volumeInfo.title))
-    b.appendChild(createDescription(book.volumeInfo.description))
-    base.appendChild(b)
+
+    if (book.volumeInfo.title != null) {
+        const b = document.createElement('div')
+        b.appendChild(createTitle(book.volumeInfo.title))
+        b.appendChild(createDescription(book.volumeInfo.description))
+        base.appendChild(b)
+    }
 }
 
 function updateDisplay(content = []) {
