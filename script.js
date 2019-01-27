@@ -1,4 +1,4 @@
-let searchBooksButton = document.getElementById('search-books')
+let searchBooksButton = document.getElementById('search-books-button')
 searchBooksButton.addEventListener('click', searchBooksButtonClickHandler, false)
 
 function createTitle(t) {
@@ -37,7 +37,7 @@ function getBooks(q) {
 }
 
 function searchBooksButtonClickHandler(e) {
-    const query = document.getElementById('search').value
+    const query = document.getElementById('search-field').value
     getBooks(query)
         .then(response => {
             console.log(response.status + " " + response.ok)

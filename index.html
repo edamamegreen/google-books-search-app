@@ -6,10 +6,10 @@
 </head>
 <body>
 <div id="root">
-    <form>
-        <label for="search">Search Google Books:</label>
-        <input id="search">
-        <button id="search-books" type="button">Search</button>
+    <form id="search-books-form" onsubmit="searchBooksButtonClickHandler(); return false;">
+        <label for="search-field">Search Google Books:</label>
+        <input id="search-field">
+        <button id="search-books-button" type="button">Search</button>
     </form>
 </div>
 </body>
