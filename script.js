@@ -27,6 +27,8 @@ function updateDisplay(q) {
 
             console.log(bookList)
         })
+    }).catch(function (err) {
+        console.log('Sorry, there was an error fetching this data. ' + err.message)
     })
 }
 
