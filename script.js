@@ -15,18 +15,23 @@ function createDescription(d = "No description available.") {
 }
 
 function createBookEntry(book) {
-    const base = document.getElementById('root')
+    const results = document.getElementById('results')
 
     if (book.volumeInfo.title != null) {
         const b = document.createElement('div')
         b.appendChild(createTitle(book.volumeInfo.title))
         b.appendChild(createDescription(book.volumeInfo.description))
-        base.appendChild(b)
+        results.appendChild(b)
     }
 }
 
 function updateDisplay(content = []) {
     let bookList = content
+    const results = document.getElementById('results')
+
+    while(results.firstChild) {
+        results.removeChild(results.firstChild)
+    }
     bookList.forEach(book => createBookEntry(book))
     console.log(bookList)
 }
