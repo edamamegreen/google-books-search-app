@@ -3,40 +3,31 @@ let queryButton = document.getElementById("querybutton")
 queryButton.addEventListener("click", runQuery, false)
 
 function updateDisplay(q) {
-    let request = new XMLHttpRequest()
     let url = 'https://www.googleapis.com/books/v1/volumes?q=' + q
 
-    request.open('GET', url, true)
+    // TODO: when there is no description, prevent error and display default text
+    fetch(url).then(function (response) {
+        return response.json()
+    }).then(function (data) {
+        let bookList = data.items
+        bookList.forEach(book => {
+            const abook = document.createElement('div')
+            const title = document.createElement('p')
+            title.setAttribute('class', 'title')
+            title.textContent = book.volumeInfo.title
+            abook.appendChild(title)
 
-    request.onload = function () {
-        let data = JSON.parse(this.response)
-        let dataList = data.items
-        if (request.status >= 200 && request.status < 400) {
+            const body = document.createElement('p')
+            book.volumeInfo.description = book.volumeInfo.description.substring(0, 300)
+            body.textContent = `${book.volumeInfo.description}...`
+            abook.appendChild(body)
 
-            dataList.forEach(book => {
-                const abook = document.createElement('div')
-                const title = document.createElement('p')
-                title.setAttribute('class', 'title')
-                title.textContent = book.volumeInfo.title
-                abook.appendChild(title)
+            const base = document.getElementById('root')
+            base.appendChild(abook)
 
-                const body = document.createElement('p')
-                // TODO: when there is no description, prevent error and display default text
-                book.volumeInfo.description = book.volumeInfo.description.substring(0, 300)
-                body.textContent = `${book.volumeInfo.description}...`
-                abook.appendChild(body)
-
-                const base = document.getElementById('root')
-                base.appendChild(abook)
-
-                console.log(dataList)
-            })
-        } else {
-            console.log('Sorry, there\'s an error.')
-        }
-    }
-
-    request.send()
+            console.log(bookList)
+        })
+    })
 }
 
 function runQuery(e) {
