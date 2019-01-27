@@ -43,8 +43,8 @@ function getBooks(q) {
 
 function searchBooks(e) {
     const query = document.getElementById('search').value
-    updateDisplay(getBooks(query))
+    getBooks(query)
 }
 
-updateDisplay(getBooks(' '))
+getBooks('')
 
