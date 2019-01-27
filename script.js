@@ -1,6 +1,5 @@
-let queryButton = document.getElementById("querybutton")
-
-queryButton.addEventListener("click", runQuery, false)
+let searchBooksButton = document.getElementById('search-books')
+searchBooksButton.addEventListener('click', searchBooks, false)
 
 function createTitle(t) {
     const title = document.createElement('h2')
@@ -42,8 +41,8 @@ function getBooks(q) {
     })
 }
 
-function runQuery(e) {
-    const query = document.getElementById('query').value
+function searchBooks(e) {
+    const query = document.getElementById('search').value
     updateDisplay(getBooks(query))
 }
 
