@@ -2,25 +2,26 @@ let queryButton = document.getElementById("querybutton")
 
 queryButton.addEventListener("click", runQuery, false)
 
+function createBookEntry(book) {
+    const abook = document.createElement('div')
+    const title = document.createElement('p')
+    title.setAttribute('class', 'title')
+    title.textContent = book.volumeInfo.title
+    abook.appendChild(title)
+
+    const body = document.createElement('p')
+    book.volumeInfo.description = book.volumeInfo.description.substring(0, 300)
+    body.textContent = `${book.volumeInfo.description}...`
+    abook.appendChild(body)
+
+    const base = document.getElementById('root')
+    base.appendChild(abook)
+}
+
 function updateDisplay(content = []) {
     let bookList = content
-    bookList.forEach(book => {
-        const abook = document.createElement('div')
-        const title = document.createElement('p')
-        title.setAttribute('class', 'title')
-        title.textContent = book.volumeInfo.title
-        abook.appendChild(title)
-
-        const body = document.createElement('p')
-        book.volumeInfo.description = book.volumeInfo.description.substring(0, 300)
-        body.textContent = `${book.volumeInfo.description}...`
-        abook.appendChild(body)
-
-        const base = document.getElementById('root')
-        base.appendChild(abook)
-
-        console.log(bookList)
-    })
+    bookList.forEach(book => createBookEntry(book))
+    console.log(bookList)
 }
 
 function getBooks(q) {
