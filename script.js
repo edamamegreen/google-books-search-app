@@ -2,20 +2,25 @@ let queryButton = document.getElementById("querybutton")
 
 queryButton.addEventListener("click", runQuery, false)
 
+function createTitle(t) {
+    const title = document.createElement('h2')
+    title.textContent = t
+    return title
+}
+
+function createDescription(d) {
+    const desc = document.createElement('p')
+    d = d.substring(0, 300)
+    desc.textContent = `${d}...`
+    return desc
+}
+
 function createBookEntry(book) {
-    const abook = document.createElement('div')
-    const title = document.createElement('p')
-    title.setAttribute('class', 'title')
-    title.textContent = book.volumeInfo.title
-    abook.appendChild(title)
-
-    const body = document.createElement('p')
-    book.volumeInfo.description = book.volumeInfo.description.substring(0, 300)
-    body.textContent = `${book.volumeInfo.description}...`
-    abook.appendChild(body)
-
     const base = document.getElementById('root')
-    base.appendChild(abook)
+    const b = document.createElement('div')
+    b.appendChild(createTitle(book.volumeInfo.title))
+    b.appendChild(createDescription(book.volumeInfo.description))
+    base.appendChild(b)
 }
 
 function updateDisplay(content = []) {
