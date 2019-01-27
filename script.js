@@ -1,16 +1,16 @@
-var queryButton = document.getElementById("querybutton")
+let queryButton = document.getElementById("querybutton")
 
 queryButton.addEventListener("click", runQuery, false)
 
 function updateDisplay(q) {
-    var request = new XMLHttpRequest()
-    var url = 'https://www.googleapis.com/books/v1/volumes?q=' + q
+    let request = new XMLHttpRequest()
+    let url = 'https://www.googleapis.com/books/v1/volumes?q=' + q
 
     request.open('GET', url, true)
 
     request.onload = function () {
-        var data = JSON.parse(this.response)
-        var dataList = data.items
+        let data = JSON.parse(this.response)
+        let dataList = data.items
         if (request.status >= 200 && request.status < 400) {
 
             dataList.forEach(book => {
