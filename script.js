@@ -32,13 +32,10 @@ function getBooks(q) {
     let url = 'https://www.googleapis.com/books/v1/volumes?q=' + q
 
     // TODO: when there is no description, prevent error and display default text
-    fetch(url).then(function (response) {
-        return response.json()
-    }).then(function (data) {
-        updateDisplay(data.items)
-    }).catch(function (err) {
-        console.log('Sorry, there was an error fetching this data. ' + err.message)
-    })
+    fetch(url)
+        .then(response => response.json())
+        .then(data => updateDisplay(data.items))
+        .catch(err => console.log('Sorry, there was an error fetching this data. ' + err.message))
 }
 
 function searchBooks(e) {
