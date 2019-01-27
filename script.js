@@ -39,7 +39,14 @@ function getBooks(q) {
 function searchBooksButtonClickHandler(e) {
     const query = document.getElementById('search').value
     getBooks(query)
-        .then(response => response.json())
+        .then(response => {
+            console.log(response.status + " " + response.ok)
+            if(response.ok) {
+                return response.json()
+            } else {
+                throw Error('Request rejected with status ' + response.status)
+            }
+        })
         .then(data => updateDisplay(data.items))
         .catch(err => console.log('Sorry, there was an error fetching this data. ' + err.name + ": " + err.message))
 }
