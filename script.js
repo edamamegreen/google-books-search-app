@@ -7,7 +7,7 @@ function createTitle(t) {
     return title
 }
 
-function createDescription(d) {
+function createDescription(d = "No description available.") {
     const desc = document.createElement('p')
     d = d.substring(0, 300)
     desc.textContent = `${d}...`
