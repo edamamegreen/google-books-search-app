@@ -1,5 +1,5 @@
 let searchBooksButton = document.getElementById('search-books')
-searchBooksButton.addEventListener('click', searchBooks, false)
+searchBooksButton.addEventListener('click', searchBooksButtonClickHandler, false)
 
 function createTitle(t) {
     const title = document.createElement('h2')
@@ -33,7 +33,7 @@ function getBooks(q) {
     return fetch(url)
 }
 
-function searchBooks(e) {
+function searchBooksButtonClickHandler(e) {
     const query = document.getElementById('search').value
     getBooks(query)
         .then(response => response.json())
