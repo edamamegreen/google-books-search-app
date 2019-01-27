@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    font-family: sans-serif, Helvetica, Arial;
+    line-height: 130%;
+    color: #3b3b3b;
+}
+
+a {
+    color: inherit;
+}
+
+#root, #results, footer {
+    padding: 0px 40px 30px 40px;
+    width: 100%;
+}
+
+#root, footer {
+    padding-top: 30px;
+    background-color: #c5e2e5;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input#search-field, button#search-books-button {
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+}
+
+input#search-field {
+    color: inherit;
+    font-size: medium;
+    padding: 0px 7px;
+}
+
+button {
+    border: none;
+    font-size: medium;
+    transition: background 250ms ease-in-out,
+    transform 150ms ease;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #B0B0B0;
+}
+
+button:active {
+    background-color: #6d6d6d
+}
+
+#results {
+    max-width: 650px;
+    min-height: 200px;
+}
+
+.book {
+    margin-top: 40px;
+}

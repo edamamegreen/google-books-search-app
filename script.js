@@ -19,6 +19,7 @@ function createBookEntry(book) {
 
     if (book.volumeInfo.title != null) {
         const b = document.createElement('div')
+        b.setAttribute('class', 'book')
         b.appendChild(createTitle(book.volumeInfo.title))
         b.appendChild(createDescription(book.volumeInfo.description))
         results.appendChild(b)
