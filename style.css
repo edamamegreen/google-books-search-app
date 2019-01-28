@@ -54,7 +54,8 @@ button:active {
 
 #results {
     max-width: 650px;
-    min-height: 200px;
+    min-height: 100px;
+    margin-top: 40px;
 }
 
 .book {
