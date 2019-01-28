@@ -1,6 +1,13 @@
 let searchBooksButton = document.getElementById('search-books-button')
 searchBooksButton.addEventListener('click', searchBooksButtonClickHandler, false)
 
+function createImg(url = "") {
+    const image = document.createElement('img')
+    image.setAttribute('src', url)
+    image.setAttribute('alt', "Image of the book cover.")
+    return image
+}
+
 function createTitle(t, l) {
     const title = document.createElement('h2')
     const link = document.createElement('a')
@@ -31,13 +38,25 @@ function createDescription(d = "No description available.") {
 }
 
 function createBookEntry(book) {
-    if (book.volumeInfo.title != null) {
+    if ('title' in book.volumeInfo) {
         const b = document.createElement('div')
+        const img = document.createElement('div')
+        const details = document.createElement('div')
+
         b.setAttribute('class', 'book')
-        b.appendChild(createTitle(book.volumeInfo.title, book.volumeInfo.previewLink))
-        b.appendChild(createAuthorList(book.volumeInfo.authors))
-        b.appendChild(createPublisher(book.volumeInfo.publisher))
-        b.appendChild(createDescription(book.volumeInfo.description))
+        img.setAttribute('class', 'book-image')
+        details.setAttribute('class', 'book-details')
+
+        if ('imageLinks' in book.volumeInfo) {
+            img.appendChild(createImg(book.volumeInfo.imageLinks.smallThumbnail))
+        }
+        details.appendChild(createTitle(book.volumeInfo.title, book.volumeInfo.previewLink))
+        details.appendChild(createAuthorList(book.volumeInfo.authors))
+        details.appendChild(createPublisher(book.volumeInfo.publisher))
+        details.appendChild(createDescription(book.volumeInfo.description))
+
+        b.appendChild(img)
+        b.appendChild(details)
         return b
     }
 }
@@ -85,6 +104,4 @@ function searchBooksButtonClickHandler(e) {
             console.log('Sorry, there was an error fulfilling your request. ' + err.name + ": " + err.message)
         })
 }
-
-getBooks('')
 
