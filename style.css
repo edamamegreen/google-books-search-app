@@ -62,6 +62,10 @@ button:active {
     margin-top: 40px;
 }
 
+h2 {
+    line-height: 120%;
+}
+
 p {
     margin: 10px 0px;
 }

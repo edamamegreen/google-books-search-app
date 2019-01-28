@@ -1,9 +1,12 @@
 let searchBooksButton = document.getElementById('search-books-button')
 searchBooksButton.addEventListener('click', searchBooksButtonClickHandler, false)
 
-function createTitle(t) {
+function createTitle(t, l) {
     const title = document.createElement('h2')
-    title.textContent = t
+    const link = document.createElement('a')
+    link.setAttribute('href', l)
+    link.textContent = t
+    title.appendChild(link)
     return title
 }
 
@@ -31,7 +34,7 @@ function createBookEntry(book) {
     if (book.volumeInfo.title != null) {
         const b = document.createElement('div')
         b.setAttribute('class', 'book')
-        b.appendChild(createTitle(book.volumeInfo.title))
+        b.appendChild(createTitle(book.volumeInfo.title, book.volumeInfo.previewLink))
         if (book.volumeInfo.authors != null) {
             b.appendChild(createAuthorList(book.volumeInfo.authors))
         }
