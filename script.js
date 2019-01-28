@@ -104,3 +104,13 @@ function searchBooksButtonClickHandler() {
         })
 }
 
+////////////////// Tests //////////////////
+
+const testBook = new Object()
+testBook.volumeInfo = new Object()
+testBook.volumeInfo.title = 'Some title'
+
+const testDesc = createDescription(testBook.description)
+if (testDesc.innerText
+    === 'No description available.'
+) throw Error('Check failed: Null book description doesn\'t create default paragraph.')
