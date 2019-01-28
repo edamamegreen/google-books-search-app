@@ -8,8 +8,9 @@ Built and tested on Firefox 64.0.2 (64-bit).
 
 ## How to Use It
 
-1. Enter a search term into the search box.
-2. Click "Search" or hit "Enter" on your keyboard.
+1. Visit https://www.nickivance.com/google-books-search-app/
+2. Enter a search term into the search box.
+3. Click "Search" or hit "Enter" on your keyboard.
 
 ## How to Make Your Own
 
