@@ -19,6 +19,10 @@ a {
     background-color: #c5e2e5;
 }
 
+#root form {
+    max-width: 650px;
+}
+
 label {
     display: block;
     margin-bottom: 10px;
@@ -34,6 +38,7 @@ input#search-field {
     color: inherit;
     font-size: medium;
     padding: 0px 7px;
+    width: available;
 }
 
 button {
@@ -60,10 +65,22 @@ button:active {
 
 .book {
     margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+}
+
+.book-image, .book-image img {
+    min-width: 100px;
+    width: 100px;
+}
+
+.book-details {
+    margin-left: 20px;
 }
 
 h2 {
     line-height: 120%;
+    margin: 0;
 }
 
 p {
