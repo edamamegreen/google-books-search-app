@@ -15,26 +15,34 @@ function createDescription(d = "No description available.") {
 }
 
 function createBookEntry(book) {
-    const results = document.getElementById('results')
-
     if (book.volumeInfo.title != null) {
         const b = document.createElement('div')
         b.setAttribute('class', 'book')
         b.appendChild(createTitle(book.volumeInfo.title))
         b.appendChild(createDescription(book.volumeInfo.description))
-        results.appendChild(b)
+        return b
     }
 }
 
-function updateDisplay(content = []) {
-    let bookList = content
-    const results = document.getElementById('results')
+function createBooks(bookList = []) {
+    const el = document.createElement('div')
+    bookList.forEach(book => el.appendChild(createBookEntry(book)))
+    console.log(bookList)
+    return el
+}
 
+function createStatus(msg) {
+    const el = document.createElement('div')
+    el.textContent = msg
+    return el
+}
+
+function updateDisplay(newContent) {
+    const results = document.getElementById('results')
     while(results.firstChild) {
         results.removeChild(results.firstChild)
     }
-    bookList.forEach(book => createBookEntry(book))
-    console.log(bookList)
+    results.appendChild(newContent)
 }
 
 function getBooks(q) {
@@ -53,8 +61,11 @@ function searchBooksButtonClickHandler(e) {
                 throw Error('Request rejected with status ' + response.status)
             }
         })
-        .then(data => updateDisplay(data.items))
-        .catch(err => console.log('Sorry, there was an error fetching this data. ' + err.name + ": " + err.message))
+        .then(data => updateDisplay(createBooks(data.items)))
+        .catch(err => {
+            updateDisplay(createStatus("Sorry, we're having trouble finding books for this search. Give it another try in a minute or ask Nicki about this."))
+            console.log('Sorry, there was an error fulfilling your request. ' + err.name + ": " + err.message)
+        })
 }
 
 getBooks('')
