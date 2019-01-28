@@ -10,14 +10,14 @@ function createTitle(t, l) {
     return title
 }
 
-function createAuthorList(authors) {
+function createAuthorList(authors = "") {
     const auths = document.createElement('p')
     auths.setAttribute('class', 'authors')
     auths.textContent = `Author(s): ${authors.join(', ').replace(/(.*),$/, '')}`
     return auths
 }
 
-function createPublisher(publisher) {
+function createPublisher(publisher = "") {
     const pub = document.createElement('p')
     pub.textContent = `Publisher: ${publisher}`
     return pub
@@ -35,12 +35,8 @@ function createBookEntry(book) {
         const b = document.createElement('div')
         b.setAttribute('class', 'book')
         b.appendChild(createTitle(book.volumeInfo.title, book.volumeInfo.previewLink))
-        if (book.volumeInfo.authors != null) {
-            b.appendChild(createAuthorList(book.volumeInfo.authors))
-        }
-        if (book.volumeInfo.publisher != null) {
-            b.appendChild(createPublisher(book.volumeInfo.publisher))
-        }
+        b.appendChild(createAuthorList(book.volumeInfo.authors))
+        b.appendChild(createPublisher(book.volumeInfo.publisher))
         b.appendChild(createDescription(book.volumeInfo.description))
         return b
     }
