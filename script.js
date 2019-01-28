@@ -17,20 +17,20 @@ function createTitle(t, l) {
     return title
 }
 
-function createAuthorList(authors = "") {
+function createAuthorList(authors = '') {
     const auths = document.createElement('p')
     auths.setAttribute('class', 'authors')
     auths.textContent = `Author(s): ${authors.join(', ').replace(/(.*),$/, '')}`
     return auths
 }
 
-function createPublisher(publisher = "") {
+function createPublisher(publisher = '') {
     const pub = document.createElement('p')
     pub.textContent = `Publisher: ${publisher}`
     return pub
 }
 
-function createDescription(d = "No description available.") {
+function createDescription(d = 'No description available.') {
     const desc = document.createElement('p')
     d = d.substring(0, 300)
     desc.textContent = `${d}...`
@@ -87,21 +87,20 @@ function getBooks(q) {
     return fetch(url)
 }
 
-function searchBooksButtonClickHandler(e) {
+function searchBooksButtonClickHandler() {
     const query = document.getElementById('search-field').value
     getBooks(query)
         .then(response => {
-            console.log(response.status + " " + response.ok)
             if(response.ok) {
                 return response.json()
             } else {
-                throw Error('Request rejected with status ' + response.status)
+                throw Error(`Request rejected with status ${response.status}`)
             }
         })
         .then(data => updateDisplay(createBooks(data.items)))
         .catch(err => {
-            updateDisplay(createStatus("Sorry, we're having trouble finding books for this search. Give it another try in a minute or ask Nicki about this."))
-            console.log('Sorry, there was an error fulfilling your request. ' + err.name + ": " + err.message)
+            updateDisplay(createStatus('Sorry, we\'re having trouble finding books for this search. Give it another try in a minute or ask Nicki about this.'))
+            console.log(`Sorry, there was an error fulfilling your request. ${err.name}: ${err.message}`)
         })
 }
 
