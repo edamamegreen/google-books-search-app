@@ -61,3 +61,7 @@ button:active {
 .book {
     margin-top: 40px;
 }
+
+p {
+    margin: 10px 0px;
+}

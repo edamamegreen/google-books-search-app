@@ -7,6 +7,13 @@ function createTitle(t) {
     return title
 }
 
+function createAuthorList(authors) {
+    const auths = document.createElement('p')
+    auths.setAttribute('class', 'authors')
+    auths.textContent = authors.join(', ').replace(/(.*),$/, '')
+    return auths
+}
+
 function createDescription(d = "No description available.") {
     const desc = document.createElement('p')
     d = d.substring(0, 300)
@@ -19,6 +26,9 @@ function createBookEntry(book) {
         const b = document.createElement('div')
         b.setAttribute('class', 'book')
         b.appendChild(createTitle(book.volumeInfo.title))
+        if (book.volumeInfo.authors != null) {
+            b.appendChild(createAuthorList(book.volumeInfo.authors))
+        }
         b.appendChild(createDescription(book.volumeInfo.description))
         return b
     }
