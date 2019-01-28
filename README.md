@@ -29,4 +29,4 @@ Open the `index.html` file in your browser.
 
 ## Feedback
 
-Comments and questions are welcome. You can reach me via the email address on my website, [nickivance.com](nickivance.com).
+Comments and questions are welcome. You can reach me via the email address on my website, [nickivance.com](http://www.nickivance.com/).
