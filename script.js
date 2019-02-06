@@ -12,7 +12,7 @@ function createTitle(t, l) {
     const title = document.createElement('h2')
     const link = document.createElement('a')
     link.setAttribute('href', l)
-    link.textContent = t
+    link.innerHTML = t
     title.appendChild(link)
     return title
 }
@@ -20,20 +20,20 @@ function createTitle(t, l) {
 function createAuthorList(authors = '') {
     const auths = document.createElement('p')
     auths.setAttribute('class', 'authors')
-    auths.textContent = `Author(s): ${authors.join(', ').replace(/(.*),$/, '')}`
+    auths.innerHTML = `Author(s): ${authors.join(', ').replace(/(.*),$/, '')}`
     return auths
 }
 
 function createPublisher(publisher = '') {
     const pub = document.createElement('p')
-    pub.textContent = `Publisher: ${publisher}`
+    pub.innerHTML = `Publisher: ${publisher}`
     return pub
 }
 
 function createDescription(d = 'No description available.') {
     const desc = document.createElement('p')
     d = d.substring(0, 300)
-    desc.textContent = `${d}...`
+    desc.innerHTML = `${d}...`
     return desc
 }
 
